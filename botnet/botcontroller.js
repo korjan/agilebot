@@ -15,6 +15,7 @@ const configure = (config) => {
   controller.configureSlackApp({
     clientId: config.get('clientId') || process.env.clientId,
     clientSecret: config.get('clientSecret') || process.env.clientSecret,
+    redirectUri : config.get('redirectUri') || process.env.redirectUri,
     scopes: ['bot']
   })
   .setupWebserver(process.env.PORT || config.get('port'), (err,webserver) => {
