@@ -17,7 +17,7 @@ const configure = (config) => {
     clientSecret: config.get('clientSecret') || process.env.clientSecret,
     scopes: ['bot']
   })
-  .setupWebserver(config.get('port') || process.env.port, (err,webserver) => {
+  .setupWebserver(process.env.port || config.get('port'), (err,webserver) => {
     webserver.get('/', (req, res) => res.send('Howdy'));
     webserver.post('/slap', (req, res) => console.log('Slap'));
   })
