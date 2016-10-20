@@ -2,7 +2,7 @@ const Botkit = require('botkit');
 const messageHandlers = require('./messageHandlers.js');
 
 const configure = (config) => {
-  const mongoUri = config.get('mongoUri') || process.env.mongoUri;
+  const mongoUri = config.get('mongoUri') || process.env.MONGODB_URI;
   const mongoStorage = require('botkit-storage-mongo')({
     mongoUri: mongoUri,
   });
