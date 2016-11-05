@@ -29,7 +29,7 @@ const configure = (config) => {
   })
   .createWebhookEndpoints(controller.webserver);
 
-  messageHandlers.addHandlers(controller);
+  messageHandlers.addHandlers(controller, config);
 
   return controller;
 }

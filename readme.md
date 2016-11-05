@@ -1,7 +1,13 @@
-# development
+# local development
 - create a slack app
 - ngrok for incoming tunnel
-- mongo for persistence
 
-# run
-`./run.sh`
+## run mongo
+- mkdir db
+- mongod --dbpath db
+
+# run locally
+npm run dev
+
+# deploy
+./deploy.sh

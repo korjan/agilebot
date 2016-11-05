@@ -1,6 +1,7 @@
 const R = require('ramda');
 const winston = require('winston');
 const scheduler = require('./../lib/scheduler');
+const luis = require('botkit-middleware-luis');
 
 const utils = function(bot, message){
   var team = bot.identifyTeam() // returns team id
@@ -12,13 +13,17 @@ const onMessageReceived = (bot, message) => {
   winston.info(message);
 }
 
-// const onDMReceived = (bot, message) => {
-//   winston.info('Direct Message received');
-//   winston.info(message.channel);
-//   scheduler.schedule(message.text, message.team, message.channel);
-//   console.log('controller', controller, bot.controller);
-//   bot.reply(message,'Hello yourself.');
-// }
+// on install / on intent -> When can I schedule your standup?
+const onDirectMessageReceived = (bot, message) => {
+  winston.info('Direct Message received, scheduling');
+  // validate message.text as schedulable text
+  bot.startConversation(message, (err, conversation) =>{
+    const onTimeResponse = {pattern : 'string', callback : ()=>{}}
+      // conversation.ask(question,[onTimeResponse, ])
+  });
+
+  scheduler.schedule(bot.config._id, message.channel, message.text);
+}
 
 const onDirectMentionReceived = (bot, message) => {
   winston.info('Mention received');
@@ -26,22 +31,19 @@ const onDirectMentionReceived = (bot, message) => {
   bot.reply(message,'Mention yourself.');
 }
 
-const addHandlers = function(controller){
+const addHandlers = function(controller, config){
+  const luisOptions = {serviceUri: config.get('luisServiceUri') || process.env.luisServiceUri};
+
+  controller.middleware.receive.use(luis.middleware.receive(luisOptions));
+
+  controller.hears(['hello','hi'],['direct_message','direct_mention','mention'],  function(bot,message) {
+      bot.reply(message,"Hello.");
+  });
+
   // reply to any incoming message
   controller.on('message_received', onMessageReceived);
-  // reply to a direct message
-  controller.on('direct_message',(bot, message) => {
-    winston.info('Direct Message received');
-    winston.info(message.channel);
-    // controller.scheduler.schedule
-    scheduler.schedule(message.text, ()=>{
-      bot.reply(message,'Hello yourself.');
-    });
-
-  });
-  // reply to a direct mention - @bot hello
+  controller.on('direct_message', onDirectMessageReceived);
   controller.on('direct_mention', onDirectMentionReceived);
-
   controller.on('mention',function(bot,message) {
     winston.info(`Mention received: ${message}`);
     bot.reply(message,'I heard you mention me!');
