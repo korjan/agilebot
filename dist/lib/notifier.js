@@ -6,7 +6,6 @@ var nextOccurencesQuery = { nextOccurence: { $lte: new Date() } };
 var sendMessageToTeam = function (controller, team, message) {
     winston.info('sending message to', team, message);
     controller.storage.teams.get(team, function (err, bot) {
-        // start a conversation to handle this response.
         if (bot) {
             bot.startConversation(message, function (err, convo) {
                 convo.ask('How are you?', function (response, convo) {
@@ -26,7 +25,7 @@ var notify = function (controller) {
     winston.info('Starting notification for bots');
     var schedules = db_1.db('schedules');
     schedules
-        .find({})
+        .find({ nextOccurence: { $lte: new Date() } })
         .each(function (occurence) {
         winston.info('Notifying ', occurence);
         sendMessageToTeam(controller, occurence.team, 'BOO');

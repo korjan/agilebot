@@ -10,13 +10,16 @@ var onMessageReceived = function (bot, message) {
     winston.info('Message received');
     winston.info(message);
 };
-// const onDMReceived = (bot, message) => {
-//   winston.info('Direct Message received');
-//   winston.info(message.channel);
-//   scheduler.schedule(message.text, message.team, message.channel);
-//   console.log('controller', controller, bot.controller);
-//   bot.reply(message,'Hello yourself.');
-// }
+// on install / on intent -> When can I schedule your standup?
+var onDirectMessageReceived = function (bot, message) {
+    winston.info('Direct Message received, scheduling');
+    // validate message.text as schedulable text
+    bot.startConversation(message, function (err, conversation) {
+        var onTimeResponse = { pattern: 'string', callback: function () { } };
+        // conversation.ask(question,[onTimeResponse, ])
+    });
+    scheduler.schedule(bot.config._id, message.channel, message.text);
+};
 var onDirectMentionReceived = function (bot, message) {
     winston.info('Mention received');
     winston.info(message);
@@ -30,12 +33,7 @@ var addHandlers = function (controller, config) {
     });
     // reply to any incoming message
     controller.on('message_received', onMessageReceived);
-    // reply to a direct message
-    controller.on('direct_message', function (bot, message) {
-        winston.info('Direct Message received, scheduling');
-        scheduler.schedule(bot.config._id, message.channel, message.text);
-    });
-    // reply to a direct mention - @bot hello
+    controller.on('direct_message', onDirectMessageReceived);
     controller.on('direct_mention', onDirectMentionReceived);
     controller.on('mention', function (bot, message) {
         winston.info("Mention received: " + message);

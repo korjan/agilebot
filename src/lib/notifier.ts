@@ -7,7 +7,6 @@ const nextOccurencesQuery = { nextOccurence: { $lte: new Date() } };
 const sendMessageToTeam = (controller, team : string, message : string) => {
   winston.info('sending message to', team, message);
   controller.storage.teams.get(team, (err, bot) => {
-    // start a conversation to handle this response.
     if (bot) {
       bot.startConversation(message,function(err,convo) {
         convo.ask('How are you?',function(response,convo) {
@@ -16,7 +15,7 @@ const sendMessageToTeam = (controller, team : string, message : string) => {
         });
       })
     } else {
-      console.log('no bot')
+      console.log('no bot');
     }
   });
 }

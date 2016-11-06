@@ -1,3 +1,4 @@
+// import { ZipCodeValidator as ZCV } from "./ZipCodeValidator";
 var later = require('later');
 const fs    = require('fs')
 const nconf = require('nconf');
