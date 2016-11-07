@@ -1,4 +1,5 @@
 "use strict";
+// import { ZipCodeValidator as ZCV } from "./ZipCodeValidator";
 var later = require('later');
 var fs = require('fs');
 var nconf = require('nconf');

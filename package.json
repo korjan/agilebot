@@ -6,18 +6,17 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "gulp && npm run start",
-    "start": "nodemon dist/app.js"
+    "start": "nodemon -r dotenv/config dist/app.js dotenv_config_path=process.env"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "botkit": "^0.4.0",
-    "botkit-middleware-luis": "^1.0.0",
-    "botkit-storage-mongo": "^1.0.4",
+    "botbuilder": "^3.4.4",
+    "dotenv": "^2.0.0",
     "github": "^5.2.2",
     "later": "^1.2.0",
-    "nconf": "^0.8.4",
     "ramda": "^0.22.1",
+    "restify": "^4.2.0",
     "rx": "^4.1.0",
     "winston": "^2.2.0"
   },
