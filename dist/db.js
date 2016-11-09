@@ -21,3 +21,4 @@ function storeNextOccurence(team, channel, scheduleText, question) {
         .insert({ team: team, channel: channel, schedule: schedule, scheduleText: scheduleText, nextOccurence: nextOccurence, question: question }, function (err, doc) { return console.log(doc); });
 }
 exports.storeNextOccurence = storeNextOccurence;
+//# sourceMappingURL=db.js.map

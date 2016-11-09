@@ -43,3 +43,4 @@ var startNotifying = function (controller) {
 module.exports = {
     startNotifying: startNotifying
 };
+//# sourceMappingURL=notifier.js.map

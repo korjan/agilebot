@@ -1,12 +1,11 @@
 {
-  "name": "stalkbot",
+  "name": "jeffagile",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "gulp && npm run start",
-    "start": "nodemon -r dotenv/config dist/app.js dotenv_config_path=process.env"
+    "start": "node -r dotenv/config dist/app.js dotenv_config_path=process.env"
   },
   "author": "",
   "license": "ISC",
@@ -21,12 +20,6 @@
     "winston": "^2.2.0"
   },
   "devDependencies": {
-    "@types/monk": "^1.0.5",
-    "@types/node": "^6.0.46",
-    "@types/rx": "^2.5.33",
-    "@types/winston": "0.0.29",
-    "gulp": "^3.9.1",
-    "gulp-typescript": "^3.1.2",
     "nodemon": "^1.11.0",
     "typescript": "^2.0.6"
   }

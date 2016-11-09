@@ -51,3 +51,4 @@ bot.dialog('/profile', [
         session.endDialog();
     }
 ]);
+//# sourceMappingURL=app.js.map

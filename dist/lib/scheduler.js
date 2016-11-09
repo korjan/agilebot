@@ -6,6 +6,4 @@ var schedule = function (team, channel, scheduleText) {
     var question = 'What did you work on yesterday'; // todo : store whole conversation
     db_1.db.storeNextOccurence(team, channel, scheduleText, question);
 };
-module.exports = {
-    schedule: schedule
-};
+//# sourceMappingURL=scheduler.js.map

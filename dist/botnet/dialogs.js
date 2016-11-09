@@ -35,3 +35,4 @@ function addDialogs(bot) {
     ]);
 }
 exports.addDialogs = addDialogs;
+//# sourceMappingURL=dialogs.js.map
