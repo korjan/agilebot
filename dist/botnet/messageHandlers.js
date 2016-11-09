@@ -71,3 +71,4 @@ var addHandlers = function (controller, config) {
 module.exports = {
     addHandlers: addHandlers
 };
+//# sourceMappingURL=messageHandlers.js.map

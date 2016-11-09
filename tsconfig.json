@@ -1,4 +1,13 @@
 {
-  "noImplicitAny": true,
-  "outDir": "./dist/"
+    "compilerOptions": {
+        "typeRoots" : ["./typings"],
+        "module": "CommonJS",
+        "target": "es5",
+        "outDir": "dist/",
+        "watch": true,
+        "sourceMap": true
+    },
+    "include": [
+        "src/**/*"
+    ]
 }

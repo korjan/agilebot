@@ -8,7 +8,3 @@ var schedule = (team: string, channel: string, scheduleText: string) => {
 
   db.storeNextOccurence(team, channel, scheduleText, question);
 }
-
-module.exports = {
-  schedule,
-}

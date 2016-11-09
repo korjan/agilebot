@@ -1,6 +1,0 @@
-{
-      "clientId" : "",
-      "clientSecret" : "",
-      "port": 3002,
-      "mongoUri" : "mongodb://localhost:27017"
-}

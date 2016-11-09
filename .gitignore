@@ -3,6 +3,10 @@ db
 
 #secrets
 settings.json
+*.env
+
+#environment
+/**/.vscode
 
 # Logs
 logs
